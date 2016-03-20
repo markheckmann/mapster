@@ -1,0 +1,9 @@
+#### DOCU OF PACKAGE ####
+
+### TODO
+* harmonize input data in dataframe
+* project lines in convex hulls?
+* convex hulls at map borders?
+
+### CHANGES (0.1)
+* add several functions
