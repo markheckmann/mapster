@@ -47,10 +47,12 @@ map_grid()
 map_points(s, cex=2:3, col=scales::alpha(s$col, .3))
 map_labels(s, label=1:6)
 
-## ----fig.width=7---------------------------------------------------------
+## ------------------------------------------------------------------------
 set.seed(0)
 x <- random_data(20)
 x$cex <- .7
+
+## ----fig.width=7---------------------------------------------------------
 par(mar=rep(1,4))
 map_proj("mollweide")  # use presets and set before projecting
 x <- map_data(x)
@@ -61,18 +63,38 @@ map_labels(x)
 map_lines(x[4, ], x[2, ], col="red")
 map_lines(x[c(1,7,8,9,16), ], x[14, ], col="blue")
 
+## ----fig.width=7, fig.height=4-------------------------------------------
+par(mar=rep(1,4), mfrow=c(1,2))
+map_proj("gall")  # use presets and set before projecting
+x <- map_data(x)
+map_setup(x)
+map_grid()
+map_points(x, col=rainbow(20), cex=2)
+map_labels(x)
+
+map_proj("mercator")  # use presets and set before projecting
+x <- map_data(x)
+map_setup(x)
+map_grid()
+map_points(x, col="blue", cex=1:20/10)
+map_text(x, cex=1:20/10, pos=1)
+
 ## ----fig.width=7---------------------------------------------------------
 library(convexhull)
+
 map_setup(x)
 map_grid()
 map_points(x)
 map_labels(x)
+ii <- c(4,10,2, 20, 13)
+map_convex_hull(x[ii, ], col="#FF000030")
+map_text(x[4, ], label="projected", col="blue", cex=1.5, pos=2)
+
+# standard non-projected convex hulls
 pp <- c_proj(x)
-g1 <- c(1,14,16,18)
-g2 <- c(1,5,7,9,14,19) 
-d <- convex_hull(pp[g1, ], col="#FF000030", smooth=2, shape = 2)
-convex_hull(pp[g2, ], col="#0000FF30", smooth=2, shape = 2)
-map_text(x[c(7,16), ], label=c("men", "women"), col="blue", cex=1.5, pos=c(1,3))
+ii <- c(1,5,7,9,14,19) 
+convex_hull(pp[ii, ], col="#0000FF30", smooth=2, shape = 2)
+map_text(x[7, ], label="non-projected", col="blue", cex=1.5, pos=3)
 
 ## ------------------------------------------------------------------------
 map_setup(x)
