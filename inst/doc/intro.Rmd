@@ -1,5 +1,5 @@
 ---
-title: "gridmap basics"
+title: "mapster basics"
 output: rmarkdown::html_vignette
 csl: apa.csl
 bibliography: literature.bib
@@ -24,10 +24,10 @@ knitr::opts_chunk$set(
 ## Intro
 
 ```{r setup, warning=FALSE, message=FALSE}
-library(gridmap)
+library(mapster)
 ```
 
-The package allows to map attribute data onto a globe or generally a map projection. Additionally the package supplies several special functions for drawing on top of the maps (lines, etc). 
+The package contains some custom functions to facilitate quick plotting 2d globe projections (lines, etc). 
 
 
 ## Data

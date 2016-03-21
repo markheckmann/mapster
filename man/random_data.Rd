@@ -2,39 +2,11 @@
 % Please edit documentation in R/plot.R
 \name{random_data}
 \alias{random_data}
-\title{#Set and query circplot settings
-#
-#}
+\title{Generate random data for map plotting}
 \usage{
 random_data(n, prefix = "")
 }
-\arguments{
-\item{...}{Key values pairs seperated by comma or a list of key value pairs as
-# e.g. returned by the function itself.
-#}
-}
 \description{
-#Set and query circplot settings
-#
-#
-}
-\examples{
-#circ_par()
-#circ_par(x.from = c(0,1))   # change input range from 0 to 1
-#
-#Initialize circplot parameters
-#
-#The values are saved in the field \\code{circ} using the \\code{options} function.
-#The following parameters can be set:
-#\\enumerate{
-#  \\item x.from Range of original data (default \\code{[0,1]}).
-#  \\item x.to Range data is mapped to, usually 0 to 2pi.
-#  \\item y.from Range of original data (default \\code{[0,1]}).
-#  \\item y.to Range data is mapped to (default \\code{[1,1.1]})
-#  \\item n.seg Number of segments used when drawing lines.
-#  \\item rings Border radi of rings (defaults is three rings \\code{c(1.0, 1.1, 1.2, 1.3)})
-#}
-#
-Generate random data for plotting
+Generate random data for map plotting
 }
 

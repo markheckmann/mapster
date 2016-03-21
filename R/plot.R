@@ -1,69 +1,4 @@
 
-# #' Set and query circplot settings
-# #' 
-# #' @param ... Key values pairs seperated by comma or a list of key value pairs as 
-# #'  e.g. returned by the function itself.
-# #' @examples
-# #' circ_par()
-# #' circ_par(x.from = c(0,1))   # change input range from 0 to 1
-# #' 
-# map_par <- function(...)
-# {
-#   cur.settings <- options("circ")[[1]]
-#   parnames <- names(cur.settings)
-#   
-#   args <- list(...)
-#   
-#   if (length(args) == 0) {
-#     return(cur.settings)
-#   }
-#   
-#   # flatten if a list key values is supplied (e.g. the old par object)
-#   # Note that list(...) wraps it into another list which is not wanted
-#   if (is.list(args[[1]])) {
-#     args <- args[[1]]
-#   }
-#       
-#   if (is.null(names(args)) & all(unlist(lapply(args, is.character)))) {
-#     pm <- pmatch(unlist(args), parnames)
-#     return(cur.settings[na.omit(pm)])
-#   } else {
-#     names(args) <- parnames[pmatch(names(args), parnames)]
-#     new.settings <- modifyList(cur.settings, args)
-#     options(circ=new.settings)
-#     invisible(new.settings)
-#   }
-# }
-# 
-# 
-# #' Initialize circplot parameters
-# #' 
-# #' The values are saved in the field \code{circ} using the \code{options} function.
-# #' The following parameters can be set:
-# #' \enumerate{
-# #'   \item x.from Range of original data (default \code{[0,1]}).
-# #'   \item x.to Range data is mapped to, usually 0 to 2pi.
-# #'   \item y.from Range of original data (default \code{[0,1]}).
-# #'   \item y.to Range data is mapped to (default \code{[1,1.1]})
-# #'   \item n.seg Number of segments used when drawing lines.
-# #'   \item rings Border radi of rings (defaults is three rings \code{c(1.0, 1.1, 1.2, 1.3)})
-# #' }
-# #' 
-# map_par_init <- function()
-# {
-#   l <- list()
-#   l$x.from <- c(0, 1)
-#   l$x.to <- c(0, 2*pi)
-#   l$y.from <- c(0, 1)
-#   l$y.to <- c(1, 1.1)  
-#   l$n.seg <- 100          # number of segments used to draw forms
-#   l$rings <- 10:14/10
-#   # circ$width <- .1
-#   # circ$line <- 1
-#   options(circ=l)
-# }
-
-
 
 ################################################################################
 
@@ -91,7 +26,7 @@
 
 
 
-#' Generate random data for plotting
+#' Generate random data for map plotting
 #' 
 random_data <- function(n, prefix="")
 {

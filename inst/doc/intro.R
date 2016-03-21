@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----setup, warning=FALSE, message=FALSE---------------------------------
-library(gridmap)
+library(mapster)
 
 ## ------------------------------------------------------------------------
 x <- data.frame(x=c(1, 0, 0, -1, 0, 0),

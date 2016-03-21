@@ -1,11 +1,11 @@
-Package: gridmap
+Package: mapster
 Type: Package
-Title: Mapping grid data
+Title: Mapping data
 Version: 0.1
 Date: 2016-03-18
 Author: Mark Heckmann
 Maintainer: Maintainer: Mark Heckmann <heckmann.mark@gmail.com>
-Description: Mapping grid data
+Description: Mapping data
 License: GPL (>= 3.0)
 VignetteBuilder: knitr
 Imports: mapproj, maptools, scales
