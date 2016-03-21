@@ -229,6 +229,8 @@ map_points <- function(x, subset=.(), ...)
   x <- add_args_to_dataframe(x, ...)
   x <- add_args_to_dataframe(x, pch=16, col="black", cex=1, replace=FALSE)
   
+  warn_if_var_is_factor(x, c("col", "pch"))
+  
   x <- map_data(x)
   x <- subset2(x, subset)
   

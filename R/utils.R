@@ -147,6 +147,17 @@ coordinate_set <- function(x)
 col_means <- numcolwise(mean, na.rm=T)
 
 
+#' issue warning if specified variables in dataframe are factors 
+#' 
+#' @keywords internal
+warn_if_var_is_factor <- function(x, vars=NULL)
+{
+  for (v in vars) {
+    if (is.factor(x[[v]]))
+      warning("note: variable '", v, 
+              "' is a factor which may cause problems.", call. = FALSE) 
+  }
+}  
 
 
 
