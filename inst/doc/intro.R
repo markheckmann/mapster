@@ -82,6 +82,8 @@ map_text(x, cex=1:20/10, pos=1)
 ## ----fig.width=7---------------------------------------------------------
 library(convexhull)
 
+map_proj("mollweide")  # use presets and set before projecting
+x <- map_data(x)
 map_setup(x)
 map_grid()
 map_points(x)
