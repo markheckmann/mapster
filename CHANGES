@@ -1,8 +1,10 @@
 #### DOCU OF PACKAGE ####
 
 ### TODO
+* functions to convert back and forth between cartesian, spherical and projected coords, so user can supply
+any of these to any function, e.g. in map_lines it is a bit ugly currently
 * harmonize input data in dataframe
-* project lines in convex hulls?
+* project outer lines of convex hulls?
 * convex hulls at map borders?
 
 ### CHANGES (0.1)
