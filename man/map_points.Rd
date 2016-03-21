@@ -4,7 +4,7 @@
 \alias{map_points}
 \title{Draw points on map}
 \usage{
-map_points(x, ...)
+map_points(x, subset = .(), ...)
 }
 \description{
 Draw points on map

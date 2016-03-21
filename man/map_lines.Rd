@@ -6,6 +6,12 @@
 \usage{
 map_lines(x, y, n = 200, ...)
 }
+\arguments{
+\item{x,y}{Either a matrix ot vector with three columns (x,y,z).
+Spherical and projected coords are currently not supported).}
+
+\item{n}{Number of segments used to draw the lines.}
+}
 \description{
 Draw lines between all points in x and y
 }

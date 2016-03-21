@@ -9,3 +9,4 @@ Description: Mapping data
 License: GPL (>= 3.0)
 VignetteBuilder: knitr
 Imports: mapproj, maptools, scales
+Depends: plyr

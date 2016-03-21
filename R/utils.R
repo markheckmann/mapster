@@ -88,6 +88,7 @@ cart_to_sphere <- function(xyz)
 #' 
 check_matrix <- function(x)
 {
+  x <- vec_to_xyz_df(x)
   if (is.vector(x)) 
     x <- matrix(x, nrow=1)
   if (! is.matrix(x) & ! is.data.frame(x))
@@ -96,7 +97,54 @@ check_matrix <- function(x)
 }  
 
   
+#' Get coordinate columns from dataframe
+#' 
+#' Comvencience wrapper to get cartesian (\code{}, \code{}, \code{}), 
+#' spherical (\code{phi}, \code{theta}, \code{r}), or
+#' projected (\code{xp}, \code{yp}) coordinate columns.
+#' 
+#' @param x A dataframe.
+#' @export
+#' 
+#' @rdname coords
+c_cart <- function(x) 
+{
+  x[ , c("x", "y", "z"), drop=FALSE]
+}
 
+#' @rdname coords
+#' @export
+#' 
+c_sphere <- function(x) 
+{
+  x[ , c("phi", "theta", "r"), drop=FALSE]
+}
+
+#' @rdname coords
+#' @export
+#' 
+c_proj <- function(x)
+{
+  x[ , c("xp", "yp"), drop=FALSE]
+}
+
+
+
+# extract coordinate set
+
+coordinate_set <- function(x)
+{
+  xyz <- c("x", "y", "z")
+  sphere <- c("phi", "theta", "r")
+  proj <- c("xp", "yp")
+  v <- c(xyz, sphere, proj)
+  x[ , v, drop=FALSE]
+}
+
+
+
+# to avoid colMeans which converts to matrix or vector
+col_means <- numcolwise(mean, na.rm=T)
 
 
 
