@@ -67,15 +67,27 @@ add_proj_data <- function(s, proj="", parameters=NULL, orientation=NULL)
 map_proj <- function(preset=NULL, proj="", parameters=NULL, orientation=NULL)
 {
   if (!is.null(preset)) {
-    preset <- match.arg(preset, c("mollweide", "orthographic"))
+    preset <- match.arg(preset, c("mollweide", "orthographic", "gall", "mercator"))
     if (preset == "mollweide") {
       proj <- preset
       orientation = c(90,0,0) 
+      parameters = NULL   # lat0
     } 
     if (preset == "orthographic") {
       proj <- preset
       orientation = c(0,0,0) 
+      parameters = NULL
     }   
+    if (preset == "gall") {
+      proj <- preset
+      orientation = NULL 
+      parameters = 0   # lat0
+    }  
+    if (preset == "mercator") {
+      proj <- preset
+      orientation = NULL 
+      parameters = NULL
+    }  
   }
   
   mapproj::mapproject(0, 0, proj=proj, parameters=parameters, 
@@ -363,6 +375,50 @@ map_lines <- function(x, y, n=200, ...)
   }
 }
 
+
+
+#' Interpolate points that form a polygon
+#' 
+#' @param x A dataframe with xyz colummns (must have three columns).
+#' @param n Number of points to interpolate.
+#' @keywords internal
+#' 
+interpolate_polygon_points <- function(x, n=100)
+{
+  ll <- rbind(x, head(x, 1))  # add last point again at bottom 
+  cc <- list()                # get interpolated xyz between each set of points
+  for (i in 1L:nrow(x)) 
+  {
+    cc[[i]] <- interpolate_between_points(ll[i, ], ll[i + 1, ], n=n)
+    #cc[[i]] <- interpolate_xyz_points(ll[i, ], ll[i + 1, ])
+  }
+  d <- do.call(rbind, cc)
+  as.data.frame(d)
+}
+
+
+#' Map convex hull on globe
+#' @param x A dataframe containing xyz and coordinates 
+#' @param subset 
+#' @param subset Logical condition to select subset. Either as a string or using
+#'   the \code{\link{plyr::.}} function.
+#' @param n Number of points used to draw each polygon line.
+#' @param ... Arguments passed to \code{polygon}.
+#' @export
+#' 
+map_convex_hull <- function(x, subset=.(), n = 100, ...)
+{
+  x <- map_data(x)                # in case only x,y,z is supplied
+  s <- subset2(x, subset)
+  
+  p <- c_proj(s)                              # get projected points
+  ohpts <- chull(p)                           # get ordered hull points
+  xyz <- c_cart(s[ohpts, ])                   # xyz of hull points ordered
+  d <- interpolate_polygon_points(xyz, n=n)   # interpolate cartesian xyz points
+  z <- map_data(d)                            # build map projections
+  xy <- c_proj(z)                       
+  polygon(xy, ...)
+}
 
 
 
