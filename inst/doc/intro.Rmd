@@ -75,7 +75,7 @@ Now the data is ready for visualization.
 
 ```{r fig.height=3.5}
 par(mar=rep(1,4))
-map_setup(s)
+map_setup()
 map_grid()
 map_points(s)
 map_labels(s)
@@ -90,7 +90,7 @@ Choose type of projection and modify some arguments by hand.
 par(mar=rep(1,4))
 map_proj("mollweide")  # set projection type
 s <- map_data(s)       # recalculate data, can usually be omitted
-map_setup(s)
+map_setup()
 map_grid()
 map_points(s, cex=2:3, col=scales::alpha(s$col, .3))
 map_labels(s, label=1:6)
@@ -116,7 +116,7 @@ Mollweide projection with some lines between points.
 par(mar=rep(1,4))
 map_proj("mollweide")  # use presets and set before projecting
 x <- map_data(x)
-map_setup(x)
+map_setup()
 map_grid()
 map_points(x, col="black", cex=1)
 map_labels(x)
@@ -130,14 +130,14 @@ Two more projection types (see \code{mapproject::mapproj} for more types).
 par(mar=rep(1,4), mfrow=c(1,2))
 map_proj("gall")  # use presets and set before projecting
 x <- map_data(x)
-map_setup(x)
+map_setup()
 map_grid()
 map_points(x, col=rainbow(20), cex=2)
 map_labels(x)
 
 map_proj("mercator")  # use presets and set before projecting
 x <- map_data(x)
-map_setup(x)
+map_setup()
 map_grid()
 map_points(x, col="blue", cex=1:20/10)
 map_text(x, cex=1:20/10, pos=1)
@@ -153,7 +153,7 @@ library(convexhull)
 
 map_proj("mollweide")  # use presets and set before projecting
 x <- map_data(x)
-map_setup(x)
+map_setup()
 map_grid()
 map_points(x)
 map_labels(x)
@@ -173,7 +173,7 @@ map_text(x[7, ], label="non-projected", col="blue", cex=1.5, pos=3)
 ### Subsetting
 
 ```{r}
-map_setup(x)
+map_setup()
 map_grid()
 map_points(x, "phi >= 0", col="darkgreen")
 map_labels(x, "phi >= 0")
@@ -185,7 +185,7 @@ map_labels(x, "phi >= 0")
 Add centroid using convenience wrappers.
 
 ```{r}
-map_setup(x)
+map_setup()
 map_grid()
 ss <- .(phi >= 0)
 map_points(x, ss)
@@ -197,7 +197,7 @@ map_centroid_label(x, "centroid", ss, pos=4)
 Add a centroid point by hand using `centroid` to calculate its position.
 
 ```{r}
-map_setup(x)
+map_setup()
 map_grid()
 c <- centroid(x, ss)                # calc centroid coordinates
 map_points(c, cex=2, pch=17, col="blue")
