@@ -177,21 +177,74 @@ centroid <- function(x, subset=.())
 #### +----------- CREATING THE PLOT -----------  ####
 
 
+
+#' Get limits in user coords for current projection
+#' 
+#' To determine \code{xlim} and \code{ylim} for a current projection
+#' a brute force approach is used. All combinations of a sequence of 
+#' lattitude and longitude coordinates is projected and the x and y limits
+#' are returned.
+#' 
+#' @param by Sequence step width for lattitude and longitude.
+#' @return A list with the elements \code{xlim} and \code{ylim}.
+#' @export
+#' @examples
+#' map_proj("mollweide")
+#' map_range()
+#' 
+map_range <- function(by=1)
+{
+  long <- seq(-180, 180, by=by)
+  lat <- seq(-90, 90, by=by)
+  xy <- expand.grid(x=long, y=lat)
+  mp <- mapproject(xy$x, xy$y)
+  r <- mp$range
+  list(xlim=r[1:2], 
+       ylim=r[3:4] )
+}
+
+
 #' Set up plotting region
 #' 
-#' Convenient wrapper around \code{plot}
-#' @export
+#' Convenient wrapper around \code{plot} automatically sets nice 
+#' plotting limits.
 #' 
-map_setup <- function(s, scale=1)
+#' @param xlim,ylim Values determined by \code{\link{map_range}} if not set explicitly.
+#' @param scale A factor to multiply \code{xlim} and \code{ylim} by.
+#' @param s Depretated. Will be removed in next version.
+#' @export
+#' @examples
+#' map_proj("mollweide")
+#' map_setup()
+#' map_grid()
+#' 
+map_setup <- function(s=NULL, xlim=NULL, ylim=NULL, scale=1)
 {
-  s <- map_data(s)
-  xmax <- max(abs(s$xp), na.rm=T)
-  ymax <- max(abs(s$yp), na.rm=T)
-  x.lim <- c(-xmax, xmax) * scale               
-  y.lim <- c(-ymax, ymax) * scale  
-  plot(NULL, xlim=x.lim, ylim=y.lim, type="n", pch=4, 
+  if (!is.null(s))
+    warning("Argument 's' is deprecated and will be removed in next version.")
+  
+#  s <- map_data(s)
+  mr <- map_range()
+  
+  if (is.null(xlim)) {
+    xlim <- mr$xlim
+  }
+  if (is.null(ylim)) {
+    ylim <- mr$ylim
+  }
+
+  xlim <- xlim * scale               
+  ylim <- ylim * scale  
+  
+#   xmax <- max(abs(s$xp), na.rm=T)
+#   ymax <- max(abs(s$yp), na.rm=T)
+#   x.lim <- c(-xmax, xmax) * scale               
+#   y.lim <- c(-ymax, ymax) * scale  
+  plot(NULL, xlim=xlim, ylim=ylim, type="n", pch=4, 
        xaxt="n", yaxt="n", xlab="", ylab="", asp=1, bty="n")  
 }
+
+
 
 
 #' Add grid lines to map

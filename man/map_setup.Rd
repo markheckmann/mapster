@@ -4,9 +4,22 @@
 \alias{map_setup}
 \title{Set up plotting region}
 \usage{
-map_setup(s, scale = 1)
+map_setup(s = NULL, xlim = NULL, ylim = NULL, scale = 1)
+}
+\arguments{
+\item{s}{Depretated. Will be removed in next version.}
+
+\item{xlim,ylim}{Values determined by \code{\link{map_range}} if not set explicitly.}
+
+\item{scale}{A factor to multiply \code{xlim} and \code{ylim} by.}
 }
 \description{
-Convenient wrapper around \code{plot}
+Convenient wrapper around \code{plot} automatically sets nice
+plotting limits.
+}
+\examples{
+map_proj("mollweide")
+map_setup()
+map_grid()
 }
 
