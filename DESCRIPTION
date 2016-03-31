@@ -1,8 +1,8 @@
 Package: mapster
 Type: Package
 Title: Mapping data
-Version: 0.1
-Date: 2016-03-18
+Version: 0.1.1
+Date: 2016-03-31
 Author: Mark Heckmann
 Maintainer: Maintainer: Mark Heckmann <heckmann.mark@gmail.com>
 Description: Mapping data
