@@ -144,7 +144,7 @@ coordinate_set <- function(x)
 
 
 # to avoid colMeans which converts to matrix or vector
-col_means <- numcolwise(mean, na.rm=T)
+col_means <- plyr::numcolwise(mean, na.rm=T)
 
 
 #' issue warning if specified variables in dataframe are factors 
