@@ -197,7 +197,7 @@ map_range <- function(by=1)
   long <- seq(-180, 180, by=by)
   lat <- seq(-90, 90, by=by)
   xy <- expand.grid(x=long, y=lat)
-  mp <- mapproject(xy$x, xy$y)
+  mp <- mapproj::mapproject(xy$x, xy$y)
   r <- mp$range
   list(xlim=r[1:2], 
        ylim=r[3:4] )
