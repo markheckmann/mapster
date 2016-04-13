@@ -8,5 +8,5 @@ Maintainer: Maintainer: Mark Heckmann <heckmann.mark@gmail.com>
 Description: Mapping data
 License: GPL (>= 3.0)
 VignetteBuilder: knitr
-Imports: mapproj, maptools, scales
+Imports: mapproj, maptools, scales, RColorBrewer
 Depends: plyr
