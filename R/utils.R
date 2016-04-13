@@ -162,3 +162,27 @@ warn_if_var_is_factor <- function(x, vars=NULL)
 
 
 
+# http://stackoverflow.com/questions/15282580/how-to-generate-a-number-of-most-distinctive-colors-in-r
+qual_col_pals = RColorBrewer::brewer.pal.info[RColorBrewer::brewer.pal.info$category == 'qual',]
+qual_col_vector = unlist(mapply(RColorBrewer::brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+
+#' Qualitative color function
+#' 
+#' RColorBrewer only has color palettes with a limited 
+#' amount of qualitative colors per palette. Here, the 
+#' qualitative palettes are concatenated to get more colors.
+#' Of course, there will be more similar colors.
+#' 
+#' @param x An integer.
+#' @export
+#' @examples 
+#' n <- 60
+#' pie(rep(1,n), col=color_qual(1:60))
+#' 
+color_qual <- function(x) 
+{
+  qual_col_vector[x]
+}
+
+
